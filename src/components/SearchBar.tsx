@@ -1,14 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const SearchBar = () => {
 	const [query, setQuery] = useState("");
+	const router = useRouter();
+
+	const submitQuery = (e: React.FormEvent) => {
+		e.preventDefault();
+
+		router.push(`/${query}`);
+	};
 
 	return (
 		<>
 			<div className="rounded-full flex w-full md:w-[70%] md:mx-0 mx-2 justify-self-center bg-white">
-				<span className="p-4 z-10 rounded-full border border-white bg-black">
+				<form
+					onSubmit={submitQuery}
+					className="px-2 block text-gray-800 flex-1 flex justify-center items-center"
+				>
+					<input
+						type="text"
+						value={query}
+						onChange={(e) => setQuery(e.target.value)}
+						placeholder="Enter a song name..."
+						className="w-full focus:outline-none rounded-full py-4 px-2"
+					/>
+				</form>
+				<span
+					onClick={(e) => submitQuery(e)}
+					className="cursor-pointer p-4 z-10 rounded-full border border-white bg-black"
+				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						x="0px"
@@ -23,15 +46,6 @@ const SearchBar = () => {
 						></path>
 					</svg>
 				</span>
-				<div className="block text-gray-800 flex-1 flex justigy-center items-center">
-					<input
-						type="text"
-						value={query}
-						onChange={(e) => setQuery(e.target.value)}
-						placeholder="Enter a song name..."
-						className="w-full focus:outline-none rounded-full py-4 px-2"
-					/>
-				</div>
 			</div>
 		</>
 	);
