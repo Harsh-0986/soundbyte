@@ -47,8 +47,8 @@ export default function Page() {
 	const [songList, setSongList] = useState<SongList[]>();
 	const [songSrc, setSongSrc] = useState("");
 
-	const params: { songName: string } = useParams();
-	const query = params.songName.trim().replaceAll("%20", "+");
+	const params: { songName?: string } = useParams();
+	const query = params?.songName?.trim().replaceAll("%20", "+");
 
 	useEffect(() => {
 		fetch(`https://saavn.me/search/songs?query=${query}&page=1&limit=2`)
