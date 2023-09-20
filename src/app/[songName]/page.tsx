@@ -54,7 +54,7 @@ export default function Page() {
 		fetch(`https://saavn.me/search/songs?query=${query}&page=1&limit=2`)
 			.then((response) => response.json())
 			.then((data) => {
-				setSongList(data.data.results);
+				setSongList(data?.data?.results);
 			});
 	}, [query]);
 
@@ -64,7 +64,9 @@ export default function Page() {
 			<SearchBar />
 			{songSrc === "" ? (
 				<span className="justify-self-center text-center text-xl font-semibold mt-4">
-					Please choose a song from the list below
+					{songList == undefined
+						? "No song found"
+						: "Choose a song from the list below"}
 				</span>
 			) : (
 				<section className="text-xl mt-4 flex flex-col items-center justify-center">
@@ -103,7 +105,6 @@ export default function Page() {
 			)}
 			<section className="mt-4 w-[50%] justify-self-center">
 				{songList?.map((song) => {
-					console.log(song);
 					return (
 						<div
 							key={song.id}
