@@ -84,26 +84,26 @@ export default function Page() {
 						}
 						<span> by </span>
 						<span className="text-slate-500">
-							{
-								songList?.find(
+							{songList
+								?.find(
 									(song) =>
 										song.downloadUrl[
 											song.downloadUrl.length - 1
 										].link === songSrc
-								)?.primaryArtists
-							}
+								)
+								?.primaryArtists.replaceAll("&quot;", "'")
+								.replaceAll("&amp;", "&")}
 						</span>
 					</div>
-					<video
+					<audio
 						className="justify-self-center w-full md:w-[50%] h-16 bg-black text-black"
 						src={songSrc}
 						controls
 						autoPlay
-						muted
 					/>
 				</section>
 			)}
-			<section className="mt-4 w-[50%] justify-self-center">
+			<section className="mt-4 md:w-[50%] w-[100%] justify-self-center">
 				{songList?.map((song) => {
 					return (
 						<div
@@ -120,7 +120,7 @@ export default function Page() {
 							{song.downloadUrl[song.downloadUrl.length - 1]
 								.link === songSrc ? (
 								<svg
-									className="h-4 w-4"
+									className="md:h-4 h-8 w-8 md:w-4"
 									viewBox="0 0 24 24"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +146,7 @@ export default function Page() {
 								</svg>
 							) : (
 								<svg
-									className="h-4 w-4"
+									className="md:h-4 h-8 w-8 md:w-4"
 									version="1.1"
 									id="Capa_1"
 									xmlns="http://www.w3.org/2000/svg"
@@ -185,7 +185,11 @@ export default function Page() {
 								width={50}
 								height={50}
 							/>
-							<span>{song.name}</span>
+							<span>
+								{song.name
+									.replaceAll("&quot;", "'")
+									.replaceAll("&amp;", "&")}
+							</span>
 						</div>
 					);
 				})}

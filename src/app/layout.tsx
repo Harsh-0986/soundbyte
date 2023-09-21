@@ -17,7 +17,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={"grid"}>
 				{children}
-				<footer className="bottom-2 absolute self-end text-xl text-white justify-self-center">
+				<footer className="hidden bottom-2 md:absolute self-end text-xl text-white justify-self-center">
 					Made with 💛 by{" "}
 					<Link href="https://harshshah.codes">Harsh Shah</Link>
 				</footer>
