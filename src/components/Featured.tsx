@@ -44,7 +44,7 @@ const Featured = () => {
 		setSongs();
 	}, []);
 
-	async function getFeaturedSongs(): FeaturedSong[] | void {
+	async function getFeaturedSongs() {
 		const url = `https://saavn.me/modules?language=hindi,english`;
 
 		const response = await fetch(url);
