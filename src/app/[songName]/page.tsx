@@ -5,6 +5,7 @@ import SearchBar from "@/components/SearchBar";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 interface SongList {
 	id: string;
@@ -44,10 +45,15 @@ interface SongList {
 }
 
 export default function Page() {
+	const searchParams = useSearchParams();
+	const src = searchParams.get("src");
+
+	console.log(src);
+
 	const [songList, setSongList] = useState<SongList[]>();
 	const [songSrc, setSongSrc] = useState("");
 
-	const params: { songName?: string } = useParams();
+	const params: { songName?: string; src?: string } = useParams();
 	const query = params?.songName?.trim().replaceAll("%20", "+");
 
 	useEffect(() => {
@@ -57,6 +63,14 @@ export default function Page() {
 				setSongList(data?.data?.results);
 			});
 	}, [query]);
+
+	useEffect(() => {
+		if (src && songList) {
+			setSongSrc(
+				songList[0].downloadUrl[songList[0].downloadUrl.length - 1].link
+			);
+		}
+	}, [songList]);
 
 	return (
 		<main className="grid md:mx-24 mx-8">
