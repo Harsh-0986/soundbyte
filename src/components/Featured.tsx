@@ -1,8 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import Carousel from "./Carousel";
+
+interface Featured {
+	songs: FeaturedSong[];
+	albums: FeaturedAlbum[];
+}
+
+interface FeaturedAlbum {
+	artists: [
+		{
+			id: string;
+			name: string;
+			url: string;
+			image: { quality: string; link: string };
+		}
+	];
+	explicitContent: string;
+	featuredArtists: [];
+	id: string;
+	image: [{ quality: string; link: string }];
+	language: string;
+	name: string;
+	playCount: string;
+	primaryArtists: [];
+	releaseDate: string;
+	songCount: string;
+	type: string;
+	url: string;
+	year: string;
+}
 
 interface FeaturedSong {
 	album: { id: string; name: string; url: string };
@@ -30,26 +58,24 @@ interface FeaturedSong {
 }
 
 const Featured = () => {
-	const [featuredSongs, setFeaturedSongs] = useState<
-		FeaturedSong[] | void | null
-	>(null);
+	const [featured, setFeatured] = useState<Featured | void | null>(null);
 
 	useEffect(() => {
 		async function setSongs() {
-			const data = await getFeaturedSongs();
+			const data = await getFeatured();
 			console.log(data);
-			setFeaturedSongs(data);
+			setFeatured(data);
 		}
 
 		setSongs();
 	}, []);
 
-	async function getFeaturedSongs() {
+	async function getFeatured() {
 		const url = `https://saavn.me/modules?language=hindi,english`;
 
 		const response = await fetch(url);
 		const data = await response.json();
-		return data.data.trending.songs;
+		return data.data.trending;
 
 		// fetch(url)
 		//	.then((response) => response.json())
@@ -58,47 +84,17 @@ const Featured = () => {
 		//	});
 	}
 
-	if (!featuredSongs) return <div>Loading...</div>;
+	if (!featured) return <div>Loading...</div>;
 
 	return (
-		<>
-			{" "}
-			<h3 className="text-4xl font-semibold my-4">Featured Songs</h3>
-			<hr className="w-full font-semibold" />
-			<section className="md:flex grid grid-cols-2 self-center items-center justify-center gap-2 mt-2">
-				{featuredSongs.map((song) => {
-					return (
-						<div
-							key={song.id}
-							className="flex items-center justify-center flex-col"
-						>
-							<Link
-								href={{
-									pathname: "/" + song.name, // Replace with path of your page component
-									query: { src: song.url },
-								}}
-								passHref
-							>
-								<Image
-									height={250}
-									width={250}
-									src={
-										song?.image[song.image.length - 1]?.link
-									}
-									alt={song.name}
-								/>
-								<span className="mt-4 cursor-pointer text-slate-300 hover:text-slate-500 block text-center font-bold text-2xl">
-									{song.name
-										.replaceAll("&amp;", "&")
-										.slice(0, 20)}
-									{song.name.length > 20 && "..."}
-								</span>
-							</Link>
-						</div>
-					);
-				})}
-			</section>
-		</>
+		<section>
+			{/* <h3 className="text-4xl font-semibold mx-auto my-4 w-full md:w-[60%]">
+				Trending Songs
+				</h3> */}
+			<Carousel data={featured.songs} />
+			<hr className="w-full font-semibold mx-auto my-6 bg-slate-500" />
+			<Carousel data={featured.albums} prefix={"/album"} />
+		</section>
 	);
 };
 

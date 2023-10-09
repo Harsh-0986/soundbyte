@@ -15,13 +15,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={"grid"}>
-				{children}
-				<footer className="hidden bottom-2 md:absolute self-end text-xl text-white justify-self-center">
-					Made with 💛 by{" "}
-					<Link href="https://harshshah.codes">Harsh Shah</Link>
-				</footer>
-			</body>
+			<body>{children}</body>
 		</html>
 	);
 }

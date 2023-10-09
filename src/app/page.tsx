@@ -4,9 +4,9 @@ import Featured from "@/components/Featured";
 
 export default function Home() {
 	return (
-		<main className="grid mx-8 md:mx-24">
+		<main className="overflow mx-8 md:mx-24">
 			<Header />
-			<SearchBar />
+			{/*			<SearchBar /> */}
 			<Featured />
 		</main>
 	);

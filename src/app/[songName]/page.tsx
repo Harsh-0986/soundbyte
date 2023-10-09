@@ -75,7 +75,7 @@ export default function Page() {
 	return (
 		<main className="grid md:mx-24 mx-8">
 			<Header />
-			<SearchBar />
+			{/* <SearchBar /> */}
 			{songSrc === "" ? (
 				<span className="justify-self-center text-center text-xl font-semibold mt-4">
 					{songList == undefined
