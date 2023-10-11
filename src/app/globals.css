@@ -17,3 +17,78 @@ body {
 		)
 		rgb(var(--background-start-rgb));
 }
+
+.audio-player {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-items: space-between;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	font-family: sans-serif;
+	border-radius: 6px;
+}
+
+.track-name {
+	margin: 30px 0 10px 0;
+}
+
+.track-artist {
+	font-weight: 300;
+	font-size: 22px;
+}
+
+.track-album {
+	opacity: 70%;
+}
+
+.track-progress {
+	display: flex;
+	width: 100%;
+}
+
+/* ========================= */
+
+.progress {
+	width: 100%;
+	border-radius: 25rem;
+	margin: 0.5rem 0.5rem;
+	-webkit-appearance: none;
+	overflow: hidden;
+}
+
+.progress:focus {
+	outline: none;
+}
+
+.progress::-webkit-slider-runnable-track {
+	width: 100%;
+	cursor: pointer;
+	background: #ccc;
+}
+
+.progress::-webkit-slider-thumb {
+	height: 1rem;
+	width: 1rem;
+	border-radius: 25px;
+	margin: 0 0.5rem;
+	background: #383737;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+
+.progress:focus::-webkit-slider-runnable-track {
+	margin: 0 0.5rem;
+	background: #ccc;
+	border-radius: 50rem;
+}
+
+/* =============================== */
+
+.track-actions {
+	display: flex;
+}
+
+.track-volume {
+	display: flex;
+	align-items: center;
+}

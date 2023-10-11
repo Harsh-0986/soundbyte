@@ -6,6 +6,8 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
+import "@/app/globals.css";
+import AudioPlayer from "@/components/AudioPlayer";
 
 interface SongList {
 	id: string;
@@ -45,6 +47,30 @@ interface SongList {
 }
 
 export default function Page() {
+	const [metadata, setmetaData] = useState<
+		{ name: string; artist?: string; album?: string }[] | undefined
+	>();
+
+	const setMetaData = () => {
+		setmetaData([
+			{
+				artist: songList
+					?.find(
+						(song) =>
+							song.downloadUrl[song.downloadUrl.length - 1]
+								.link === songSrc
+					)
+					?.primaryArtists.replaceAll("&quot;", "'")
+					.replaceAll("&amp;", "&"),
+				name: songList?.find(
+					(song) =>
+						song.downloadUrl[song.downloadUrl.length - 1].link ===
+						songSrc
+				)?.name,
+			},
+		]);
+	};
+
 	const searchParams = useSearchParams();
 	const src = searchParams.get("src");
 
@@ -69,6 +95,7 @@ export default function Page() {
 			setSongSrc(
 				songList[0].downloadUrl[songList[0].downloadUrl.length - 1].link
 			);
+			setMetaData();
 		}
 	}, [songList]);
 
@@ -84,37 +111,13 @@ export default function Page() {
 				</span>
 			) : (
 				<section className="text-xl mt-4 flex flex-col items-center justify-center">
-					<div>
-						<span className="text-xl font-semibold">
-							Now Playing:{" "}
-						</span>
-						{
-							songList?.find(
-								(song) =>
-									song.downloadUrl[
-										song.downloadUrl.length - 1
-									].link === songSrc
-							)?.name
-						}
-						<span> by </span>
-						<span className="text-slate-500">
-							{songList
-								?.find(
-									(song) =>
-										song.downloadUrl[
-											song.downloadUrl.length - 1
-										].link === songSrc
-								)
-								?.primaryArtists.replaceAll("&quot;", "'")
-								.replaceAll("&amp;", "&")}
-						</span>
-					</div>
-					<audio
+					{/* <audio
 						className="justify-self-center w-full md:w-[50%] h-16 bg-black text-black"
 						src={songSrc}
 						controls
 						autoPlay
-					/>
+						/> */}
+					<AudioPlayer songSrc={[songSrc]} metadata={metadata} />
 				</section>
 			)}
 			<section className="mt-4 md:w-[50%] w-[100%] justify-self-center">

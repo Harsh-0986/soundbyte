@@ -1962,6 +1962,11 @@ react-dom@18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-icons@^4.11.0:
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.11.0.tgz#4b0e31c9bfc919608095cc429c4f1846f4d66c65"
+  integrity sha512-V+4khzYcE5EBk/BvcuYRq6V/osf11ODUM2J8hg2FDSswRrGvqiYUYPRy4OdrWaQOBj4NcpJfmHZLNaD+VH0TyA==
+
 react-is@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -1987,6 +1992,11 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+reaplay@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/reaplay/-/reaplay-1.1.8.tgz#6e88624b870210245de347bfac8e27d89ae07965"
+  integrity sha512-7Vr+2D6p7+srOn+ATZX4JIUrKdtMl28TyHYABYCBFiK9CLPUaoyIsJ6wb8Jx9tuPLBA9wSVanEB7pcmrFpI0Qg==
 
 reflect.getprototypeof@^1.0.4:
   version "1.0.4"
