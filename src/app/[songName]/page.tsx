@@ -49,7 +49,7 @@ interface SongList {
 export default function Page() {
 	const [metadata, setmetaData] = useState<
 		{ name: string; artist?: string; album?: string }[] | undefined
-	>();
+		>([{name: "", artist: "", album: ""}]);
 
 	const setMetaData = () => {
 		setmetaData([
