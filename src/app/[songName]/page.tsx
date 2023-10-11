@@ -62,11 +62,12 @@ export default function Page() {
 					)
 					?.primaryArtists.replaceAll("&quot;", "'")
 					.replaceAll("&amp;", "&"),
-				name: songList?.find(
-					(song) =>
-						song.downloadUrl[song.downloadUrl.length - 1].link ===
-						songSrc
-				)?.name,
+				name:
+					songList?.find(
+						(song) =>
+							song.downloadUrl[song.downloadUrl.length - 1]
+								.link === songSrc
+					)?.name || "",
 			},
 		]);
 	};
