@@ -9,7 +9,7 @@ import {
 import { TbRepeat, TbRepeatOff, TbVolume, TbVolumeOff } from "react-icons/tb";
 
 interface props {
-	songSrc: string[];
+	songSrc: [string];
 	metadata: [{ name: string; artist?: string; album?: string }];
 }
 
