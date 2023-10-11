@@ -15,7 +15,7 @@ interface props {
 
 const AudioPlayer = ({ songSrc, metadata }: props) => {
 	return (
-		<Reaplay tracks={[songSrc]}>
+		<Reaplay tracks={songSrc}>
 			{(player: PlayerType) => {
 				return (
 					<>
